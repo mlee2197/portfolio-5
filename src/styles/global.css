@@ -1,1 +1,46 @@
 @import "tailwindcss";
+
+/* Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Fugaz+One&family=Josefin+Sans:wght@300&family=Playfair+Display:wght@400&display=swap");
+
+@theme {
+  /* Fonts */
+  --font-fugaz: "Fugaz One", cursive;
+  --font-playfair: "Playfair Display", serif;
+  --font-josefin: "Josefin Sans", sans-serif;
+
+  /* Colors */
+  --color-primary: #3267fe;
+  --color-secondary: #ffd0d1;
+  --color-accent: #97abff;
+  --color-background: #f9f9f9;
+}
+
+body {
+  @apply m-0 p-0 box-border font-josefin bg-background;
+}
+
+.size-screen {
+  position: relative;
+  width: 100dvw;
+  max-width: 1080px;
+  height: 100dvh;
+  max-height: 800px;
+  margin: 0 auto;
+}
+
+.hero-background {
+  @apply grid absolute top-0 left-0 bottom-0 right-0 grid-cols-2 gap-6;
+}
+
+.hero-background::after {
+  content: "";
+  @apply hidden sm:block absolute top-0 left-0 bottom-0 right-0;
+  background: linear-gradient(
+    180deg,
+    #d9d9d900 50%,
+    var(--color-background) 100%
+  );
+  opacity: 1;
+}
+

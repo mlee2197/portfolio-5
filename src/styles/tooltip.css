@@ -1,0 +1,48 @@
+@import "tailwindcss";
+.tooltip-container {
+  @apply relative;
+}
+
+.tooltip {
+  @apply absolute z-50 px-3 py-2 text-sm shadow-md opacity-0 pointer-events-none transition-opacity duration-200 whitespace-nowrap;
+}
+
+.tooltip-top {
+  @apply bottom-full left-1/2 transform -translate-x-1/2 mb-2;
+}
+
+.tooltip-top::after {
+  content: "";
+  @apply absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-white;
+}
+
+.tooltip-bottom {
+  @apply top-full left-1/2 transform -translate-x-1/2 mt-2;
+}
+
+.tooltip-bottom::after {
+  content: "";
+  @apply absolute bottom-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-b-white;
+}
+
+.tooltip-left {
+  @apply right-full top-1/2 transform -translate-y-1/2 mr-2;
+}
+
+.tooltip-left::after {
+  content: "";
+  @apply absolute left-full top-1/2 transform -translate-y-1/2 border-4 border-transparent border-l-white;
+}
+
+.tooltip-right {
+  @apply left-full top-1/2 transform -translate-y-1/2 ml-2;
+}
+
+.tooltip-right::after {
+  content: "";
+  @apply absolute right-full top-1/2 transform -translate-y-1/2 border-4 border-transparent border-r-white;
+}
+
+.group:hover .tooltip {
+  @apply opacity-100;
+}

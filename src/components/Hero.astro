@@ -1,0 +1,109 @@
+---
+import { Image } from "astro:assets";
+import ThatsMe from "../assets/thats_me.svg";
+import Matt from "../assets/matt_lee.webp";
+import Name from "../assets/name.webp";
+import LinkedIn from "../assets/icons/linkedin.svg";
+import Github from "../assets/icons/github.svg";
+import Mail from "../assets/icons/mail.svg";
+
+import Tooltip from "./Tooltip.astro";
+
+// Social media items array
+const socialItems = [
+  {
+    name: "LinkedIn",
+    icon: LinkedIn,
+    href: "https://www.linkedin.com/in/matthewlee1297/",
+    tooltip: "LinkedIn",
+  },
+  {
+    name: "Github",
+    icon: Github,
+    href: "https://github.com/mlee2197",
+    tooltip: "GitHub",
+  },
+  {
+    name: "Mail",
+    icon: Mail,
+    href: "mailto:mlee2197@gmail.com",
+    tooltip: "Email",
+  },
+];
+---
+
+<header
+  class="size-screen flex flex-col justify-center items-center overflow-hidden"
+>
+  <!-- Background -->
+  <div class="hero-background">
+    <div
+      class="bg-repeat bg-contain bg-center"
+      style={`background-image: url('${ThatsMe.src}')`}
+    >
+    </div>
+    <div
+      class="bg-repeat bg-contain bg-center"
+      style={`background-image: url('${ThatsMe.src}')`}
+    >
+    </div>
+  </div>
+  <!-- Card -->
+  <div
+    class="relative max-w-screen flex flex-col justify-end h-[80%] bg-white border border-secondary aspect-[480/640] mx-auto z-10"
+  >
+    <Image
+      src={Name}
+      alt="Matt Lee"
+      class="absolute top-4 left-4 sm:top-6 sm:left-6 w-1/2 h-auto"
+      loading="eager"
+      width={300}
+      height={207}
+    />
+    <Image
+      src={Matt}
+      alt="Matt Lee holding an umbrella"
+      class="block object-contain object-[80%_50%] w-full h-[90%] mt-auto"
+      loading="eager"
+      width={667}
+      height={800}
+    />
+    <span class="absolute top-2 right-4 sm:top-4 sm:right-6 text-2xl leading-1 text-accent">
+      -- .- - - <span class="text-xs">/</span> .-.. . .
+    </span>
+    <div class="absolute left-4 bottom-4 sm:left-6 sm:bottom-6 flex gap-4 sm:flex-col">
+      {
+        socialItems.map((item) => (
+          <Tooltip text={item.tooltip} position="right">
+            <a
+              href={item.href}
+              target={item.name === "Mail" ? "_self" : "_blank"}
+              rel={item.name === "Mail" ? "" : "noopener"}
+              class="w-6 h-6"
+            >
+              <Image src={item.icon} alt={item.name} width={24} height={24} />
+            </a>
+          </Tooltip>
+        ))
+      }
+    </div>
+    <Image
+      src="/logo.ico"
+      alt="Site Logo"
+      width={32}
+      height={32}
+      class="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 w-8 h-8 opacity-20"
+    />
+    <!-- Textboxes -->
+    <div
+      class="absolute w-[204px] left-4 top-1/2 -translate-y-1/2 p-2 border border-secondary font-playfair text-[28px] bg-white sm:-left-[64px] shadow-lg sm:shadow-[4px_4px_8px_0_rgba(0,0,0,0.12)]"
+    >
+      Frontend Web Developer
+    </div>
+    <div
+      class="absolute w-[136px] left-4 top-[70%] -translate-y-1/2 px-3 py-2 border border-secondary font-playfair bg-white sm:left-[auto] sm:-right-[48px] shadow-lg sm:shadow-[-4px_4px_8px_0_rgba(0,0,0,0.12)]"
+    >
+      Bringing the human layer to your frontend.
+    </div>
+  </div>
+</header>

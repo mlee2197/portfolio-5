@@ -1,0 +1,21 @@
+---
+import "../styles/tooltip.css";
+// src/components/Tooltip.astro
+export interface Props {
+  text: string;
+  position?: 'top' | 'bottom' | 'left' | 'right';
+  delay?: number;
+}
+
+const { text, position = 'top', delay = 200 } = Astro.props;
+---
+
+<div class="tooltip-container group">
+  <slot />
+  <div 
+    class={`tooltip tooltip-${position}`}
+    style={`transition-delay: ${delay}ms`}
+  >
+    {text}
+  </div>
+</div>
