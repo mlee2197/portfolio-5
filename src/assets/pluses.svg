@@ -1,0 +1,19 @@
+<svg width="260" height="162" viewBox="0 0 260 162" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_12_1505)">
+<mask id="mask0_12_1505" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="10" y="-72" width="240" height="224">
+<path d="M226 140H250M238 128V152M226 100H250M238 88V112M226 60H250M238 48V72M226 20H250M238 8V32M226 -20H250M238 -32V-8M226 -60H250M238 -72V-48M172 140H196M184 128V152M172 100H196M184 88V112M172 60H196M184 48V72M172 20H196M184 8V32M172 -20H196M184 -32V-8M172 -60H196M184 -72V-48M118 140H142M130 128V152M118 100H142M130 88V112M118 60H142M130 48V72M118 20H142M130 8V32M118 -20H142M130 -32V-8M118 -60H142M130 -72V-48M64 140H88M76 128V152M64 100H88M76 88V112M64 60H88M76 48V72M64 20H88M76 8V32M64 -20H88M76 -32V-8M64 -60H88M76 -72V-48M10 140H34M22 128V152M10 100H34M22 88V112M10 60H34M22 48V72M10 20H34M22 8V32M10 -20H34M22 -32V-8M10 -60H34M22 -72V-48" stroke="#97ABFF" stroke-width="8" stroke-miterlimit="10"/>
+</mask>
+<g mask="url(#mask0_12_1505)">
+<rect x="260" y="168" width="280" height="270" transform="rotate(180 260 168)" fill="url(#paint0_linear_12_1505)"/>
+</g>
+</g>
+<defs>
+<linearGradient id="paint0_linear_12_1505" x1="516.5" y1="168" x2="260" y2="413.5" gradientUnits="userSpaceOnUse">
+<stop stop-color="#D9D9D9" stop-opacity="0"/>
+<stop offset="1" stop-color="#97ABFF"/>
+</linearGradient>
+<clipPath id="clip0_12_1505">
+<rect width="260" height="162" fill="white" transform="matrix(-1 0 0 -1 260 162)"/>
+</clipPath>
+</defs>
+</svg>
