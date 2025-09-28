@@ -59,7 +59,7 @@ body {
 
 .profile-grid {
   position: relative;
-  width: min(100%, 600px);
+  width: min(100%, 640px);
   height: calc(100%-var(--nav-height));
   display: grid;
   grid-template-areas:
@@ -85,7 +85,7 @@ body {
 
 .profile-desc {
   grid-area: desc;
-  @apply p-8 space-y-4 bg-white;
+  @apply p-8 space-y-4 bg-white sm:px-14 sm:py-10;
 }
 
 .profile-vertical-card {

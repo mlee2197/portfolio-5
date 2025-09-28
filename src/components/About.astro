@@ -11,6 +11,7 @@ import Gatsby from "../assets/icons/gatsby.svg";
 import Github from "../assets/icons/github.svg";
 import Next from "../assets/icons/nextdotjs.svg";
 import Graphql from "../assets/icons/graphql.svg";
+import Pluses from "../assets/pluses.svg";
 import { Image } from "astro:assets";
 // About Me section component
 
@@ -81,19 +82,26 @@ const icons = [
     >
     <!-- Profile -->
     <div class="profile-grid">
+      <Image
+        src={Pluses}
+        alt="Plus signs decoration"
+        width={260}
+        height={162}
+        class="absolute -right-[78px] -top-[48px] w-[200px] h-[124px] -z-1"
+      />
       <div class="profile-location profile-vertical-card vertical-text">
         <div>New York</div>
         <div>Born and raised</div>
       </div>
       <div class="profile-job profile-vertical-card vertical-text">
         <div>Frontend Eng.</div>
-        <div>{yearsExperience} years</div>
+        <div>{yearsExperience}+ years</div>
       </div>
       <div class="profile-desc">
         <p>
-          I’m Matthew, a Front-end web developer with X years of experience,
-          based in New York. My passion lies in creating interactive, unique,
-          and user-friendly web experiences. Specializing in React and modern
+          I’m Matthew, a Front-end web developer with {yearsExperience} years of
+          experience, based in New York. My passion lies in creating interactive,
+          unique, and user-friendly web experiences. Specializing in React and modern
           JavaScript frameworks, with a keen eye for design and UX. Currently, I
           am working as an front-end web engineer at Coast.
         </p>
