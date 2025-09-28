@@ -1,0 +1,156 @@
+---
+import React from "../assets/icons/react.svg";
+import AstroImg from "../assets/icons/astro.svg";
+import Tailwind from "../assets/icons/tailwindcss.svg";
+import Html from "../assets/icons/html5.svg";
+import Css from "../assets/icons/css.svg";
+import Ts from "../assets/icons/typescript.svg";
+import Figma from "../assets/icons/figma.svg";
+import Firebase from "../assets/icons/firebase.svg";
+import Gatsby from "../assets/icons/gatsby.svg";
+import Github from "../assets/icons/github.svg";
+import Next from "../assets/icons/nextdotjs.svg";
+import Graphql from "../assets/icons/graphql.svg";
+import { Image } from "astro:assets";
+// About Me section component
+
+// Calculate years since 2021
+const startYear = 2021;
+const currentYear = new Date().getFullYear();
+const yearsExperience = currentYear - startYear;
+
+const icons = [
+  {
+    text: "HTML",
+    icon: Html,
+  },
+  {
+    text: "CSS",
+    icon: Css,
+  },
+  {
+    text: "Tailwind",
+    icon: Tailwind,
+  },
+  {
+    text: "Typescript",
+    icon: Ts,
+  },
+  {
+    text: "React",
+    icon: React,
+  },
+  {
+    text: "NextJs",
+    icon: Next,
+  },
+  {
+    text: "Gatsby",
+    icon: Gatsby,
+  },
+  {
+    text: "Astro",
+    icon: AstroImg,
+  },
+  {
+    text: "Graphql",
+    icon: Graphql,
+  },
+  {
+    text: "Figma",
+    icon: Figma,
+  },
+  {
+    text: "Github",
+    icon: Github,
+  },
+  {
+    text: "Firebase",
+    icon: Firebase,
+  },
+];
+---
+
+<section id="about" class="size-screen flex items-center justify-center p-4">
+  <div
+    class="w-full h-full flex flex-col justify-between items-center gap-4 sm:gap-6 sm:flex-row"
+  >
+    <!-- Morse code -->
+    <span class="vertical-text text-accent text-lg"
+      >.- -... --- ..- - <span class="text-xs">/</span> -- .</span
+    >
+    <!-- Profile -->
+    <div class="profile-grid">
+      <div class="profile-location profile-vertical-card vertical-text">
+        <div>New York</div>
+        <div>Born and raised</div>
+      </div>
+      <div class="profile-job profile-vertical-card vertical-text">
+        <div>Frontend Eng.</div>
+        <div>{yearsExperience} years</div>
+      </div>
+      <div class="profile-desc">
+        <p>
+          I’m Matthew, a Front-end web developer with X years of experience,
+          based in New York. My passion lies in creating interactive, unique,
+          and user-friendly web experiences. Specializing in React and modern
+          JavaScript frameworks, with a keen eye for design and UX. Currently, I
+          am working as an front-end web engineer at Coast.
+        </p>
+        <p>
+          I thrive best when I’m working with folks who are passionate about
+          their craft and strive to build meaningful products together.
+        </p>
+        <div class="flex items-center space-x-2">
+          <p>Job Status: Not searching</p>
+          <span class="w-2.5 h-2.5 bg-red-500 rounded-full"></span>
+        </div>
+      </div>
+      <!-- Marque -->
+      <div
+        class="profile-tech relative overflow-hidden py-4 h-full w-full flex justify-center align-center bg-white"
+      >
+        <svg
+          width="100%"
+          height="40px"
+          xmlns="http://www.w3.org/2000/svg"
+          style={{ position: "absolute" }}
+        >
+          <defs>
+            <pattern
+              id="dot-pattern"
+              width="24"
+              height="18"
+              patternUnits="userSpaceOnUse"
+            >
+              <circle cx="1.5" cy="1.5" r="1.5" fill="white" fill-opacity="0.5"
+              ></circle>
+            </pattern>
+            <filter id="tile">
+              <feTile></feTile>
+            </filter>
+          </defs>
+          <rect
+            width="100%"
+            height="100%"
+            fill="url(#dot-pattern)"
+            filter="url(#tile)"></rect>
+        </svg>
+        <div class="h-8 w-full overflow-x-hidden">
+          <div
+            class="techstack-1 grayscale brightness-0 absolute top-1/2 -translate-y-1/2 left-0 flex align-center justify-around w-full h-[inherit] mx-auto"
+          >
+            {icons.map((item) => <Image src={item.icon} alt={item.text} />)}
+          </div>
+          <div
+            class="techstack-2 grayscale brightness-0 absolute top-1/2 -translate-y-1/2 left-0 flex align-center justify-around w-full h-[inherit] mx-auto"
+          >
+            {icons.map((item) => <Image src={item.icon} alt={item.text} />)}
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Spacer -->
+    <div></div>
+  </div>
+</section>

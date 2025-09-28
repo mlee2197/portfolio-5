@@ -16,6 +16,10 @@
   --color-background: #f9f9f9;
 }
 
+:root {
+  --nav-height: 82px;
+}
+
 body {
   @apply m-0 p-0 box-border font-josefin bg-background;
 }
@@ -24,7 +28,7 @@ body {
   position: relative;
   width: 100dvw;
   max-width: 1080px;
-  height: 100dvh;
+  min-height: 100dvh;
   max-height: 800px;
   margin: 0 auto;
 }
@@ -44,3 +48,97 @@ body {
   opacity: 1;
 }
 
+.navbar {
+  @apply sticky top-0 z-50 grid px-4 sm:py-1 border-y border-y-gray-200 backdrop-blur-[4px] bg-[length:4px_4px] from-gray-900/0 to-gray-50;
+  background-image: radial-gradient(
+    circle at center,
+    var(--color-background) 2px,
+    transparent 2px
+  );
+}
+
+.profile-grid {
+  position: relative;
+  width: min(100%, 600px);
+  height: calc(100%-var(--nav-height));
+  display: grid;
+  grid-template-areas:
+    "desc desc"
+    "desc desc"
+    "desc desc"
+    "loc job"
+    "tech tech";
+  gap: 1rem;
+}
+
+.profile-location {
+  grid-area: loc;
+}
+
+.profile-job {
+  grid-area: job;
+}
+
+.profile-tech {
+  grid-area: tech;
+}
+
+.profile-desc {
+  grid-area: desc;
+  @apply p-8 space-y-4 bg-white;
+}
+
+.profile-vertical-card {
+  @apply p-6 bg-white;
+}
+
+.profile-vertical-card div:nth-child(1) {
+  @apply text-[20px] sm:text-[24px] font-playfair;
+}
+
+.profile-vertical-card div:nth-child(2) {
+  @apply text-[10px] font-josefin opacity-50;
+}
+
+@keyframes translateOut {
+  from {
+    left: 0%;
+  }
+  to {
+    left: -100%;
+  }
+}
+
+@keyframes translateIn {
+  from {
+    left: 100%;
+  }
+  to {
+    left: 0%;
+  }
+}
+
+.techstack-1 {
+  animation: translateIn 8s linear infinite;
+}
+
+.techstack-2 {
+  animation: translateOut 8s linear infinite;
+}
+
+@media (min-width: 640px) {
+  .profile-grid {
+    grid-template-areas:
+      "loc desc desc desc desc desc"
+      "loc desc desc desc desc desc"
+      "loc desc desc desc desc desc"
+      "job desc desc desc desc desc"
+      "job tech tech tech tech tech"
+      "job tech tech tech tech tech";
+  }
+
+  .vertical-text {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+  }
+}
