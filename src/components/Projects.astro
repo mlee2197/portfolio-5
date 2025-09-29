@@ -1,0 +1,279 @@
+---
+import { Image } from "astro:assets";
+
+import PaperTexture from "../assets/clean-gray-paper.webp";
+import CoastImage from "../assets/projects/image-coast.webp";
+import CoastLogo from "../assets/projects/logo-coast.svg";
+import AlterImage from "../assets/projects/image-alter.webp";
+import AlterLogo from "../assets/projects/logo-alterme.svg";
+import ImprintImage from "../assets/projects/image-imprint.webp";
+import ImprintLogo from "../assets/projects/logo-imprint.webp";
+import SellfireImage from "../assets/projects/image-sellfire.webp";
+import SellfireLogo from "../assets/projects/logo-sellfire.svg";
+import MotionScriptImage from "../assets/projects/image-motion-script.webp";
+import MotionScriptLogo from "../assets/projects/logo-motion-script.svg";
+
+const PROJECTS = [
+  {
+    title: "Coast",
+    image: CoastImage,
+    logo: CoastLogo,
+    color: "#4f41f1",
+    description:
+      "Coast is an AI-powered demo platform that helps API-first companies create interactive, personalized product demos for prospects and customers. It's also the company I'm currently employed at! As a frontend engineer, I focused on improving the template builder by solving complex UI challenges and crafting beautiful, intuitive interactions that make the demo creation process seamless for users. As an early engineer, I greatly contribute to team processes and best practices ensuring high code quality, efficiency, and maintainability.",
+  },
+  {
+    title: "Alter",
+    image: AlterImage,
+    logo: AlterLogo,
+    color: "#ffffff",
+    description:
+      "Alter is a fitness and wellness startup with a mission to provide hyper-personalized fitness and coaching tailored to your unique DNA and biometrics. I was responsible for building a responsive, user-friendly interface while connecting with 3rd party APIs like Shopify, SplitIt, and more. One of the main challenges was ensuring consistency across all 3rd party integrations. We integrated segment to track user behavior and send consistent data between all platforms while ensuring good documentation and communication within the team.",
+  },
+  {
+    title: "Imprint",
+    image: ImprintImage,
+    logo: ImprintLogo,
+    color: "#20614c",
+    description:
+      "Imprint is a Google Play App of the Year, offering a unique reading experience where users explore books broken down into digestible segments, enhanced by clean animations. It aims to make reading more engaging and visually immersive. Since this is an app, my expertise came into play for the web acquisition flows. I developed multiple versions of the purchase flow for various A/B tests while relying on Mixpanel to understand user behavior. Due to the fast-paced, iteration-heavy environment, I had to architect the project to allow for lots of flexibility and reusability.",
+  },
+  {
+    title: "Sellfire",
+    image: SellfireImage,
+    logo: SellfireLogo,
+    color: "#061132",
+    description:
+      "Sellfire is a high-velocity sales platform that helps salespeople manage their teams, clients, sales, and communications in one place. It offers tools for efficient team coordination, client management, and seamless call integration, empowering sales teams to close deals faster. As a front-end developer responsible for the sales portal, I focused on building a robust UI for a complex platform. To manage the complexity, I implemented a modular architecture to break features down into their own components and state context. This allowed for better collaboration, debugging, testing, and scalability.",
+  },
+  {
+    title: "Motion Script",
+    image: MotionScriptImage,
+    logo: MotionScriptLogo,
+    color: "#171717",
+    description:
+      "Motion Script is a side project where I set a personal challenge to create 25 unique web animations in 25 days. The goal was to explore different CSS properties and techniques, pushing the boundaries of front-end animation capabilities while enhancing my creative coding skills. One of the biggest challenges was creating a wide variety of animations within a limited timeframe, while ensuring they remained performant across different browsers. I utilized GSAP to create smooth animations and reduced the amount of concurrent animations while maintaining visual appeal.",
+  },
+];
+---
+
+<section
+  id="projects"
+  class="size-screen flex items-center justify-center px-4 pt-10 sm:pt-20"
+>
+  <div class="w-full h-full flex flex-col justify-center items-center">
+    <div class="w-full max-w-md sm:hidden">
+      <select
+        id="project-select"
+        class="w-full p-4 text-lg border border-gray-300 bg-white focus:ring-2 focus:ring-primary focus:border-transparent pr-8"
+      >
+        {
+          PROJECTS.map((project) => (
+            <option value={project.title}>{project.title}</option>
+          ))
+        }
+      </select>
+    </div>
+
+    <!-- Desktop Tabs -->
+    <div class="hidden sm:flex justify-center gap-6 w-full mx-auto relative">
+      <!-- Sliding background -->
+      <div
+        id="sliding-bg"
+        class="absolute top-0 left-0 h-full z-[1] bg-secondary transition-all duration-300 ease-out"
+      >
+      </div>
+
+      {
+        PROJECTS.map((project, index) => (
+          <button
+            class={`project-tab relative z-10 px-2 py-2 text-lg transition-colors duration-200 ${
+              index === 0 ? "text-black" : "text-gray-600 hover:text-gray-800"
+            }`}
+            data-project-id={project.title}
+            data-index={index}
+          >
+            {project.title}
+          </button>
+        ))
+      }
+    </div>
+    <!-- Content -->
+    <div
+      class="w-full h-full flex flex-col justify-between items-center gap-4 sm:gap-6 sm:flex-row my-10"
+    >
+      <span class="vertical-text text-accent text-xl">
+        .--. .-. --- .--- . -.-. - ...
+      </span>
+      <div
+        class="paper-texture w-full max-w-[700px] h-full max-h-[640px] flex-1 relative mx-auto p-12 overflow-hidden"
+        style={{
+          "--paper-texture": `url(${PaperTexture.src})`,
+        }}
+      >
+        <!-- Main Project Description (Center) -->
+        <div
+          class="relative z-10 paper-main w-[75%] h-60 bg-white shadow-lg mx-auto my-auto p-4"
+        >
+          <h3
+            class="text-xl font-playfair font-semibold mb-2"
+            id="project-title"
+          >
+            {PROJECTS[0].title}
+          </h3>
+          <p class="text-sm text-gray-600" id="project-description">
+            {PROJECTS[0].description}
+          </p>
+        </div>
+
+        <!-- Logo Paper (Top Left) -->
+        <div
+          class=`paper-logo absolute top-4 left-4 w-24 h-24 shadow-lg transform rotate-[-8deg] flex items-center justify-center`
+          style={{
+            backgroundColor: PROJECTS[0].color,
+          }}
+        >
+          <Image
+            src={PROJECTS[0].logo}
+            alt=`${PROJECTS[0].title} Logo`
+            class="w-16 h-16 aspect-square max-h-1/2 object-contain"
+            id="project-logo"
+            width={100}
+            height={100}
+          />
+        </div>
+
+        <!-- Tech Stack Paper (Bottom Left) -->
+        <!-- <div
+          class="paper-tech absolute bottom-4 left-4 w-32 h-24 bg-white shadow-lg transform rotate-[6deg]"
+        >
+        </div> -->
+
+        <!-- Project Image Paper (Bottom Right) -->
+        <div
+          class="paper-image absolute bottom-4 right-4 w-40 h-32 shadow-lg transform rotate-[-4deg] overflow-hidden"
+        >
+          <Image
+            src={PROJECTS[0].image}
+            alt=`${PROJECTS[0].title} Image`
+            class="w-full h-full object-cover"
+            width={400}
+            height={400}
+            id="project-image"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script is:inline define:vars={{ PROJECTS }}>
+  // Mobile dropdown functionality
+  const projectSelect = document.getElementById("project-select");
+
+  // Desktop tabs functionality
+  const projectTabs = document.querySelectorAll(".project-tab");
+  const slidingBg = document.getElementById("sliding-bg");
+
+  // Initialize sliding background position
+  function initializeSlidingBg() {
+    if (slidingBg && projectTabs.length > 0) {
+      const firstTab = projectTabs[0];
+      slidingBg.style.width = `${firstTab.offsetWidth}px`;
+      slidingBg.style.left = `${firstTab.offsetLeft}px`;
+    }
+  }
+
+  // Update sliding background position
+  function updateSlidingBg(activeTab) {
+    if (slidingBg) {
+      slidingBg.style.width = `${activeTab.offsetWidth}px`;
+      slidingBg.style.left = `${activeTab.offsetLeft}px`;
+    }
+  }
+
+  // Update tab text colors
+  function updateTabColors(activeTab) {
+    projectTabs.forEach((tab) => {
+      if (tab === activeTab) {
+        tab.classList.remove("text-gray-600", "hover:text-gray-800");
+        tab.classList.add("text-black");
+      } else {
+        tab.classList.remove("text-black");
+        tab.classList.add("text-gray-600", "hover:text-gray-800");
+      }
+    });
+  }
+
+  // Update project content
+  function updateProjectContent(projectIndex) {
+    const project = PROJECTS[projectIndex];
+
+    // Update title
+    const titleEl = document.getElementById("project-title");
+    if (titleEl) titleEl.textContent = project.title;
+
+    // Update description
+    const descEl = document.getElementById("project-description");
+    if (descEl) descEl.textContent = project.description;
+
+    // Update logo
+    const logoEl = document.getElementById("project-logo");
+    if (logoEl) {
+      logoEl.src = project.logo.src;
+      logoEl.alt = `${project.title} Logo`;
+    }
+
+    // Update image
+    const imageEl = document.getElementById("project-image");
+    if (imageEl) {
+      imageEl.src = project.image.src;
+      imageEl.alt = `${project.title} Image`;
+    }
+
+    // Update logo background color
+    const logoContainer = document.querySelector(".paper-logo");
+    if (logoContainer) {
+      logoContainer.style.backgroundColor = project.color;
+    }
+  }
+
+  // Mobile dropdown event listener
+  if (projectSelect) {
+    projectSelect.addEventListener("change", (e) => {
+      const target = e.target;
+      const selectedProjectIndex = parseInt(target.value) - 1;
+      updateProjectContent(selectedProjectIndex);
+    });
+  }
+
+  // Desktop tabs event listeners
+  if (projectTabs.length > 0 && slidingBg) {
+    // Initialize on load
+    initializeSlidingBg();
+    updateProjectContent(0); // Show first project by default
+
+    // Handle window resize
+    window.addEventListener("resize", initializeSlidingBg);
+
+    projectTabs.forEach((tab, index) => {
+      tab.addEventListener("click", () => {
+        updateSlidingBg(tab);
+        updateTabColors(tab);
+        updateProjectContent(index);
+      });
+    });
+  }
+</script>
+
+<style>
+  .project-tab {
+    transition: color 0.2s ease-in-out;
+  }
+
+  .paper-texture {
+    background-image: var(--paper-texture);
+    background-size: contain;
+    background-position: center;
+    background-repeat: repeat;
+  }
+</style>
