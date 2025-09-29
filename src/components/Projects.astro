@@ -87,7 +87,7 @@ const PROJECTS = [
       {
         PROJECTS.map((project, index) => (
           <button
-            class={`project-tab relative z-10 px-2 py-2 text-lg transition-colors duration-200 ${
+            class={`project-tab relative z-10 px-2 py-2 text-lg transition-colors duration-200 ease-in-out ${
               index === 0 ? "text-black" : "text-gray-600 hover:text-gray-800"
             }`}
             data-project-id={project.title}
@@ -106,9 +106,9 @@ const PROJECTS = [
         .--. .-. --- .--- . -.-. - ...
       </span>
       <div
-        class="paper-texture w-full max-w-[700px] h-full max-h-[640px] flex-1 relative mx-auto p-12 overflow-hidden"
+        class="paper-texture w-full max-w-[700px] h-full max-h-[640px] flex-1 relative mx-auto p-12 overflow-hidden bg-contain bg-center bg-repeat"
         style={{
-          "--paper-texture": `url(${PaperTexture.src})`,
+          backgroundImage: `url(${PaperTexture.src})`,
         }}
       >
         <!-- Main Project Description (Center) -->
@@ -264,16 +264,3 @@ const PROJECTS = [
     });
   }
 </script>
-
-<style>
-  .project-tab {
-    transition: color 0.2s ease-in-out;
-  }
-
-  .paper-texture {
-    background-image: var(--paper-texture);
-    background-size: contain;
-    background-position: center;
-    background-repeat: repeat;
-  }
-</style>
