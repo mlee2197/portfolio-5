@@ -16,6 +16,7 @@
 
 :root {
   --nav-height: 82px;
+  --content-width: 1080px;
 }
 
 body {
@@ -25,7 +26,7 @@ body {
 .size-screen {
   position: relative;
   width: 100dvw;
-  max-width: 1080px;
+  max-width: var(--content-width);
   max-height: min(800px, 100dvh);
   margin: 0 auto;
 }
@@ -86,7 +87,7 @@ body {
 }
 
 .profile-vertical-card {
-  @apply p-6 bg-gray-100;
+  @apply p-6 bg-white;
 }
 
 .profile-vertical-card div:nth-child(1) {
@@ -123,6 +124,22 @@ body {
   animation: translateOut 8s linear infinite;
 }
 
+
+.cat-clip-path {
+  clip-path: polygon(
+    0px 60px,
+    15% 60px,
+    25% 0px,
+    35% 60px,
+    65% 60px,
+    75% 0px,
+    85% 60px,
+    100% 60px,
+    100% 99%,
+    0% 100%
+  );
+}
+
 @media (min-width: 640px) {
   .profile-grid {
     grid-template-areas:
@@ -137,5 +154,33 @@ body {
   .vertical-text {
     writing-mode: vertical-rl;
     transform: rotate(180deg);
+  }
+
+  .cat-clip-path {
+    /* Assuming the container height is 100% and we want to use pixel Y values.
+       Let's use 60px for the "30%" Y, 0px for the top, 99% and 100% for the bottom as before.
+       You may want to adjust 60px to match your actual design intent. */
+    clip-path: polygon(
+      0px 60px,
+      25% 60px,
+      30% 0px,
+      35% 60px,
+      65% 60px,
+      70% 0px,
+      75% 60px,
+      100% 60px,
+      100% 99%,
+      0% 100%
+    );
+  }
+}
+
+/* Marquee Animation */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
   }
 }

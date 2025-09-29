@@ -1,0 +1,42 @@
+---
+import CatCarousel from "./CatCarousel.astro";
+---
+
+<section
+  class="cat-clip-path relative mx-auto my-16 pt-[60px] pb-10 max-w-[1100px] bg-[#1f1f1f]"
+  aria-labelledby="cat-title"
+>
+  <!-- inner content -->
+  <div class="relative px-4 sm:px-8 pb-12 text-[#f6f3ef]">
+    <h2 id="cat-title" class="font-playfair text-xl my-8 text-center">
+      Before you go...<br />Say hi to <span class="text-secondary">Sesame</span>
+      and <span class="text-secondary">Ellie</span>!
+    </h2>
+
+    <!-- Cat Photos Carousel -->
+    <CatCarousel />
+  </div>
+
+  <!-- textured overlay (replaces ::after) -->
+  <div
+    class="pointer-events-none absolute inset-0 mix-blend-soft-light [filter:url(#noise)]"
+    aria-hidden="true"
+  >
+  </div>
+
+  <!-- noise filter definition -->
+  <svg
+    width="0"
+    height="0"
+    viewBox="0 0 10 10"
+    aria-hidden="true"
+    focusable="false"
+  >
+    <filter id="noise" x="0%" y="0%" width="200%" height="100%">
+      <feTurbulence baseFrequency="0.02 0.02" result="NOISE"></feTurbulence>
+      <feDiffuseLighting in="NOISE" lighting-color="white" surfaceScale="1">
+        <feDistantLight azimuth="45" elevation="25"></feDistantLight>
+      </feDiffuseLighting>
+    </filter>
+  </svg>
+</section>

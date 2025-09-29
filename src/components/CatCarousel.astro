@@ -1,0 +1,180 @@
+---
+import Sesame1 from "../assets/cats/sesame-1.webp";
+import Sesame2 from "../assets/cats/sesame-2.webp";
+import Sesame3 from "../assets/cats/sesame-3.webp";
+import Sesame4 from "../assets/cats/sesame-4.webp";
+import Sesame5 from "../assets/cats/sesame-5.webp";
+import Sesame6 from "../assets/cats/sesame-6.webp";
+import Ellie1 from "../assets/cats/ellie-1.webp";
+import Ellie2 from "../assets/cats/ellie-2.webp";
+import Ellie3 from "../assets/cats/ellie-3.webp";
+import Ellie4 from "../assets/cats/ellie-4.webp";
+import Ellie5 from "../assets/cats/ellie-5.webp";
+import Ellie6 from "../assets/cats/ellie-6.webp";
+import { Image } from "astro:assets";
+import Fish from "../assets/icons/fish.svg";
+
+// Create array of cat images alternating between Sesame and Ellie
+const catImages = [
+  { src: Sesame3, alt: "Sesame", name: "Sesame" },
+  { src: Ellie3, alt: "Ellie", name: "Ellie" },
+  { src: Sesame1, alt: "Sesame", name: "Sesame" },
+  { src: Ellie1, alt: "Ellie", name: "Ellie" },
+  { src: Sesame4, alt: "Sesame", name: "Sesame" },
+  { src: Ellie4, alt: "Ellie", name: "Ellie" },
+  { src: Sesame5, alt: "Sesame", name: "Sesame" },
+  { src: Ellie5, alt: "Ellie", name: "Ellie" },
+  { src: Sesame6, alt: "Sesame", name: "Sesame" },
+  { src: Ellie6, alt: "Ellie", name: "Ellie" },
+  { src: Sesame2, alt: "Sesame", name: "Sesame" },
+  { src: Ellie2, alt: "Ellie", name: "Ellie" },
+];
+---
+
+<div class="cat-carousel-container">
+  <div class="embla">
+    <div class="embla__viewport">
+      <div class="embla__container">
+        {
+          catImages.map((image) => (
+            <div class="embla__slide">
+              <Image
+                src={image.src || "/placeholder.svg"}
+                alt={image.alt}
+                width={325}
+                height={500}
+                class="embla__slide__img"
+              />
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <button
+      class="embla__button embla__button--prev"
+      type="button"
+      aria-label="Previous slide"
+    >
+      <Image
+        src={Fish}
+        alt="Previous"
+        width={32}
+        height={32}
+        style="transform: scaleX(-1);"
+        class="embla__button__icon"
+      />
+    </button>
+
+    <button
+      class="embla__button embla__button--next"
+      type="button"
+      aria-label="Next slide"
+    >
+      <Image
+        src={Fish}
+        alt="Next"
+        width={32}
+        height={32}
+        class="embla__button__icon"
+      />
+    </button>
+  </div>
+</div>
+
+<style>
+  .cat-carousel-container {
+    margin: 0 auto;
+  }
+
+  .embla {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+
+  .embla__container {
+    display: flex;
+    touch-action: pan-y pinch-zoom;
+    gap: 1rem;
+  }
+
+  .embla__slide {
+    flex: 0 0 208px;
+    min-width: 0;
+  }
+
+  .embla__slide__img {
+    width: 208px;
+    height: 320px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+  .embla__button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  .embla__button:hover {
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  .embla__button--prev {
+    left: 1rem;
+  }
+
+  .embla__button--next {
+    right: 1rem;
+  }
+</style>
+
+<script>
+  import EmblaCarousel from "embla-carousel";
+
+  const emblaNode = document.querySelector(".embla__viewport");
+  const prevBtn = document.querySelector(".embla__button--prev");
+  const nextBtn = document.querySelector(".embla__button--next");
+
+  if (emblaNode && prevBtn && nextBtn) { // @ts-ignore
+    const embla = EmblaCarousel(emblaNode, {
+      loop: true,
+      align: "start",
+    });
+
+    prevBtn.addEventListener("click", () => embla.scrollPrev());
+    nextBtn.addEventListener("click", () => embla.scrollNext());
+
+    const updateButtonStates = () => {
+      if (!embla.canScrollPrev()) {
+        prevBtn.setAttribute("disabled", "");
+      } else {
+        prevBtn.removeAttribute("disabled");
+      }
+
+      if (!embla.canScrollNext()) {
+        nextBtn.setAttribute("disabled", "");
+      } else {
+        nextBtn.removeAttribute("disabled");
+      }
+    };
+
+    embla.on("select", updateButtonStates);
+    embla.on("init", updateButtonStates);
+  }
+</script>
